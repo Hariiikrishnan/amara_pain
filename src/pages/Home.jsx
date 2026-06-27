@@ -7,34 +7,16 @@ import {
 } from 'lucide-react';
 import { conditions, treatments } from '../utils/medicalData';
 import Badge from '../components/ui/Badge';
+import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/skeuomorphic.css';
 
 export default function Home() {
   const [activeTreatmentTab, setActiveTreatmentTab] = useState('epidural-injections');
   const sliderRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // 1. Scroll-Driven Animations on Native Scroll (Repeatable on Reverse Scroll)
-  useEffect(() => {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          } else {
-            entry.target.classList.remove('revealed');
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    const revealElements = document.querySelectorAll('.animate-reveal');
-    revealElements.forEach((el) => revealObserver.observe(el));
-
-    return () => {
-      revealElements.forEach((el) => revealObserver.unobserve(el));
-    };
-  }, []);
+  // Bind centralized scroll reveal observer
+  useScrollReveal(containerRef);
 
   // 2. Mouse Wheel Scroll Translation for Video slider (Move left/right smoothly on scroll down/up)
   useEffect(() => {
@@ -179,7 +161,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full skeuomorphic-console min-h-screen relative">
+    <div ref={containerRef} className="w-full skeuomorphic-console min-h-screen relative">
       
       {/* Premium Floating Ambient Background Orbs */}
       <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/25 rounded-full blur-[140px] pointer-events-none animate-float-slow z-0" />

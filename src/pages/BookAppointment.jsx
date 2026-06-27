@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useAppointment } from '../context/AppointmentContext';
 import { conditions, treatments } from '../utils/medicalData';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
-import { CheckCircle2, ChevronRight, ChevronLeft, Calendar, ShieldAlert, FileText, Info, Award } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ChevronLeft, Calendar, ShieldAlert, FileText, Info, Award, Phone } from 'lucide-react';
+import '../styles/skeuomorphic.css';
 
 export default function BookAppointment() {
   const location = useLocation();
@@ -82,11 +83,14 @@ export default function BookAppointment() {
   };
 
   return (
-    <div className="w-full py-16 px-4 md:px-8 max-w-4xl mx-auto space-y-8 text-left">
-      
+    <div className="w-full skeuomorphic-console min-h-screen relative py-16 px-4 md:px-8 max-w-4xl mx-auto space-y-8 text-left">
+      {/* Premium Ambient Background Orbs */}
+      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/15 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[550px] h-[550px] bg-teal-200/15 rounded-full blur-[130px] pointer-events-none z-0" />
+
       {/* 1. WIZARD STEPS PROGRESS INDICATOR */}
       {!bookingSuccess && (
-        <div className="space-y-4">
+        <div className="space-y-4 relative z-10">
           <div className="flex items-center gap-1.5 text-xs text-slate-400 font-semibold uppercase tracking-wider">
             <span>Scheduling Flow</span>
             <ChevronRight className="h-3 w-3" />
@@ -94,7 +98,7 @@ export default function BookAppointment() {
           </div>
           
           {/* Visual Progress Bar */}
-          <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden flex">
+          <div className="w-full bg-slate-205 h-2.5 rounded-full overflow-hidden flex border border-slate-200/50">
             {[...Array(5)].map((_, i) => (
               <div 
                 key={i} 
@@ -108,16 +112,16 @@ export default function BookAppointment() {
       )}
 
       {/* 2. WIZARD STEP CONTENTS */}
-      <Card variant="white" padding="lg" className="border-slate-100 shadow-2xl relative min-h-[450px] flex flex-col justify-between">
-        <div className="absolute top-0 right-0 w-24 h-24 bg-medical-50 rounded-full blur-xl -z-10" />
+      <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative min-h-[450px] flex flex-col justify-between z-10">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-medical-50 rounded-full blur-xl -z-10 animate-pulse" />
 
         {/* STEP 1: SELECT CONDITION */}
         {step === 1 && !bookingSuccess && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Badge variant="primary" className="bg-cta-100 text-cta-700 font-bold">Step 1</Badge>
-              <h2 className="text-2xl font-black font-heading text-primary-900">What primary pain area are we treating?</h2>
-              <p className="text-sm text-slate-500">Select the condition that best describes your pain. This helps us pre-configure clinical protocols.</p>
+              <Badge variant="primary" className="bg-cta-100 text-cta-700 border border-cta-100 font-bold">Step 1</Badge>
+              <h2 className="text-2xl font-black font-heading text-slate-900">What primary pain area are we treating?</h2>
+              <p className="text-sm text-slate-600 leading-relaxed">Select the condition that best describes your pain. This helps us pre-configure clinical protocols.</p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -132,7 +136,7 @@ export default function BookAppointment() {
                   className={`px-5 py-4 rounded-xl border font-bold text-left transition-all duration-200 cursor-pointer flex items-center justify-between group ${
                     selectedCondition === cond.title
                       ? 'border-medical-600 bg-medical-50 text-medical-700 shadow-sm'
-                      : 'border-slate-200 bg-white text-primary-800 hover:border-slate-300 hover:bg-slate-50'
+                      : 'border-slate-200 bg-white text-slate-800 hover:border-slate-350 hover:bg-slate-50'
                   }`}
                 >
                   <span>{cond.title}</span>
@@ -149,9 +153,9 @@ export default function BookAppointment() {
         {step === 2 && !bookingSuccess && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Badge variant="primary" className="bg-cta-100 text-cta-700 font-bold">Step 2</Badge>
-              <h2 className="text-2xl font-black font-heading text-primary-900">Choose a preferred treatment type</h2>
-              <p className="text-sm text-slate-500">If you are unsure, select "First Consultation / Diagnostic Block" and Dr. Amara will diagnose you.</p>
+              <Badge variant="primary" className="bg-cta-100 text-cta-700 border border-cta-100 font-bold">Step 2</Badge>
+              <h2 className="text-2xl font-black font-heading text-slate-900">Choose a preferred treatment type</h2>
+              <p className="text-sm text-slate-600 leading-relaxed">If you are unsure, select "First Consultation / Diagnostic Block" and Dr. Amara will diagnose you.</p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -165,7 +169,7 @@ export default function BookAppointment() {
                 className={`px-5 py-4 rounded-xl border font-bold text-left transition-all duration-200 cursor-pointer flex items-center justify-between group ${
                   selectedTreatment === "Diagnostic Consultation / Specialist Evaluation"
                     ? 'border-medical-600 bg-medical-50 text-medical-700 shadow-sm'
-                    : 'border-slate-200 bg-white text-primary-800 hover:border-slate-300 hover:bg-slate-50'
+                    : 'border-slate-200 bg-white text-slate-800 hover:border-slate-355 hover:bg-slate-50'
                 }`}
               >
                 <span>Diagnostic Consultation &amp; Evaluation</span>
@@ -183,7 +187,7 @@ export default function BookAppointment() {
                   className={`px-5 py-4 rounded-xl border font-bold text-left transition-all duration-200 cursor-pointer flex items-center justify-between group ${
                     selectedTreatment === treat.title
                       ? 'border-medical-600 bg-medical-50 text-medical-700 shadow-sm'
-                      : 'border-slate-200 bg-white text-primary-800 hover:border-slate-300 hover:bg-slate-50'
+                      : 'border-slate-200 bg-white text-slate-800 hover:border-slate-355 hover:bg-slate-50'
                   }`}
                 >
                   <span>{treat.title}</span>
@@ -200,9 +204,9 @@ export default function BookAppointment() {
         {step === 3 && !bookingSuccess && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Badge variant="primary" className="bg-cta-100 text-cta-700 font-bold">Step 3</Badge>
-              <h2 className="text-2xl font-black font-heading text-primary-900">Select your medical provider</h2>
-              <p className="text-sm text-slate-500">Choose a specific clinical specialist or select First Available for faster appointment slots.</p>
+              <Badge variant="primary" className="bg-cta-100 text-cta-700 border border-cta-100 font-bold">Step 3</Badge>
+              <h2 className="text-2xl font-black font-heading text-slate-900">Select your medical provider</h2>
+              <p className="text-sm text-slate-600 leading-relaxed">Choose a specific clinical specialist or select First Available for faster appointment slots.</p>
             </div>
             
             <div className="space-y-3 pt-2">
@@ -217,7 +221,7 @@ export default function BookAppointment() {
                   className={`w-full px-5 py-4 rounded-xl border font-bold text-left transition-all duration-200 cursor-pointer flex items-center justify-between group ${
                     selectedProvider === prov.name
                       ? 'border-medical-600 bg-medical-50 text-medical-700 shadow-sm'
-                      : 'border-slate-200 bg-white text-primary-800 hover:border-slate-300 hover:bg-slate-50'
+                      : 'border-slate-200 bg-white text-slate-800 hover:border-slate-355 hover:bg-slate-50'
                   }`}
                 >
                   <div>
@@ -237,9 +241,9 @@ export default function BookAppointment() {
         {step === 4 && !bookingSuccess && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Badge variant="primary" className="bg-cta-100 text-cta-700 font-bold">Step 4</Badge>
-              <h2 className="text-2xl font-black font-heading text-primary-900">Choose an appointment slot</h2>
-              <p className="text-sm text-slate-500">Select a convenient date and an available morning or afternoon time slot.</p>
+              <Badge variant="primary" className="bg-cta-100 text-cta-700 border border-cta-100 font-bold">Step 4</Badge>
+              <h2 className="text-2xl font-black font-heading text-slate-900">Choose an appointment slot</h2>
+              <p className="text-sm text-slate-600 leading-relaxed">Select a convenient date and an available morning or afternoon time slot.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
@@ -251,7 +255,7 @@ export default function BookAppointment() {
                   value={selectedDate}
                   min={new Date().toISOString().split('T')[0]} // Block past dates
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600 focus:ring-1 focus:ring-medical-600 shadow-sm"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600 focus:ring-1 focus:ring-medical-600 shadow-sm transition-all duration-200"
                 />
               </div>
 
@@ -268,7 +272,7 @@ export default function BookAppointment() {
                         className={`px-4 py-2.5 rounded-xl border text-sm font-bold text-center transition-all duration-200 cursor-pointer ${
                           selectedTime === time
                             ? 'border-medical-600 bg-medical-50 text-medical-700 shadow-sm'
-                            : 'border-slate-200 bg-white text-primary-800 hover:bg-slate-50'
+                            : 'border-slate-200 bg-white text-slate-800 hover:bg-slate-50'
                         }`}
                       >
                         {time}
@@ -290,9 +294,9 @@ export default function BookAppointment() {
         {step === 5 && !bookingSuccess && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Badge variant="primary" className="bg-cta-100 text-cta-700 font-bold">Step 5</Badge>
-              <h2 className="text-2xl font-black font-heading text-primary-900">Enter patient details</h2>
-              <p className="text-sm text-slate-500">Provide your basic credentials. Your information is protected under HIPAA-conscious safeguards.</p>
+              <Badge variant="primary" className="bg-cta-100 text-cta-700 border border-cta-100 font-bold">Step 5</Badge>
+              <h2 className="text-2xl font-black font-heading text-slate-900">Enter patient details</h2>
+              <p className="text-sm text-slate-600 leading-relaxed">Provide your basic credentials. Your information is protected under HIPAA-conscious safeguards.</p>
             </div>
             
             {/* Split layout: inputs vs selection summary */}
@@ -309,7 +313,7 @@ export default function BookAppointment() {
                       value={patientDetails.firstName}
                       onChange={handleInputChange}
                       placeholder="e.g. John"
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                      className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                     />
                   </div>
                   <div className="space-y-1">
@@ -321,7 +325,7 @@ export default function BookAppointment() {
                       value={patientDetails.lastName}
                       onChange={handleInputChange}
                       placeholder="e.g. Doe"
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                      className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                     />
                   </div>
                 </div>
@@ -336,7 +340,7 @@ export default function BookAppointment() {
                       value={patientDetails.phone}
                       onChange={handleInputChange}
                       placeholder="e.g. 704-555-0199"
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                      className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                     />
                   </div>
                   <div className="space-y-1">
@@ -347,7 +351,7 @@ export default function BookAppointment() {
                       required
                       value={patientDetails.dob}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                      className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                     />
                   </div>
                 </div>
@@ -361,7 +365,7 @@ export default function BookAppointment() {
                     value={patientDetails.email}
                     onChange={handleInputChange}
                     placeholder="e.g. john@example.com"
-                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                    className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                   />
                 </div>
 
@@ -373,27 +377,27 @@ export default function BookAppointment() {
                     value={patientDetails.insurance}
                     onChange={handleInputChange}
                     placeholder="e.g. BCBS, Medicare, United"
-                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-medical-600"
+                    className="w-full px-4 py-2 bg-slate-50 border border-slate-205 rounded-xl text-sm focus:outline-none focus:border-medical-600"
                   />
                 </div>
               </div>
 
               {/* Selection Summary Column */}
               <div className="md:col-span-5">
-                <Card variant="slate" padding="sm" className="border-slate-200 space-y-4 text-xs h-full flex flex-col justify-between">
+                <Card variant="slate" padding="sm" className="border-slate-200 space-y-4 text-xs h-full flex flex-col justify-between bg-slate-100/50">
                   <div className="space-y-3">
-                    <h4 className="font-bold text-sm text-primary-900 border-b border-slate-200 pb-2">Appointment Summary</h4>
+                    <h4 className="font-bold text-sm text-slate-900 border-b border-slate-200 pb-2">Appointment Summary</h4>
                     <div className="space-y-2">
-                      <p><strong>Condition:</strong> <span className="text-slate-600">{selectedCondition}</span></p>
-                      <p><strong>Treatment:</strong> <span className="text-slate-600">{selectedTreatment}</span></p>
-                      <p><strong>Provider:</strong> <span className="text-slate-600">{selectedProvider}</span></p>
-                      <p><strong>Scheduled:</strong> <span className="text-slate-600">{selectedDate} at {selectedTime}</span></p>
+                      <p><strong>Condition:</strong> <span className="text-slate-655 font-medium">{selectedCondition}</span></p>
+                      <p><strong>Treatment:</strong> <span className="text-slate-655 font-medium">{selectedTreatment}</span></p>
+                      <p><strong>Provider:</strong> <span className="text-slate-655 font-medium">{selectedProvider}</span></p>
+                      <p><strong>Scheduled:</strong> <span className="text-slate-655 font-medium">{selectedDate} at {selectedTime}</span></p>
                     </div>
                   </div>
                   
-                  <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1.5 leading-relaxed text-slate-500">
-                    <div className="flex gap-1.5 text-primary-900 font-bold text-xs">
-                      <ShieldAlert className="h-4 w-4 text-medical-600 shrink-0" />
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200 space-y-1.5 leading-relaxed text-slate-600 shadow-sm">
+                    <div className="flex gap-1.5 text-slate-900 font-bold text-xs">
+                      <ShieldAlert className="h-4.5 w-4.5 text-medical-600 shrink-0" />
                       <span>Flat Fee Verification</span>
                     </div>
                     <span>We never charge hospital facility fees, saving you up to 60% out-of-pocket.</span>
@@ -407,23 +411,23 @@ export default function BookAppointment() {
         {/* STEP 6: BOOKING SUCCESS SCREEN */}
         {bookingSuccess && (
           <div className="text-center py-12 space-y-6">
-            <div className="p-4 bg-emerald-50 text-emerald-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto">
+            <div className="p-4 bg-emerald-50 text-emerald-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto border border-emerald-100">
               <CheckCircle2 className="h-12 w-12" />
             </div>
             
             <div className="space-y-2">
-              <Badge variant="success">Confirmed Appointment</Badge>
-              <h2 className="text-3xl font-black font-heading text-primary-900">Appointment Requested!</h2>
-              <p className="text-sm text-slate-500 max-w-md mx-auto">
+              <Badge variant="success" className="bg-emerald-50 text-emerald-800 border border-emerald-100">Confirmed Appointment</Badge>
+              <h2 className="text-3xl font-black font-heading text-slate-900">Appointment Requested!</h2>
+              <p className="text-sm text-slate-600 max-w-md mx-auto">
                 Your request has been successfully registered. Your booking reference code is:
               </p>
-              <span className="inline-block px-5 py-2 bg-slate-100 text-primary-900 font-black text-lg rounded-xl tracking-wider">
+              <span className="inline-block px-5 py-2 bg-slate-100 text-slate-900 font-black text-lg rounded-xl tracking-wider border border-slate-200 shadow-inner">
                 {generatedBookingId}
               </span>
             </div>
 
-            <div className="max-w-md mx-auto p-5 bg-slate-50 border border-slate-100 rounded-2xl text-left space-y-3 text-xs text-slate-500 leading-relaxed">
-              <h4 className="font-bold text-sm text-primary-900 flex items-center gap-1.5">
+            <div className="max-w-md mx-auto p-5 bg-slate-50 border border-slate-200 rounded-2xl text-left space-y-3 text-xs text-slate-600 leading-relaxed shadow-sm">
+              <h4 className="font-bold text-sm text-slate-900 flex items-center gap-1.5">
                 <FileText className="h-4.5 w-4.5 text-medical-600" /> Next Steps &amp; Preparation:
               </h4>
               <p>&bull; A clinical patient coordinator will call or email you within <strong>24 business hours</strong> to finalize insurance details and confirm your slot.</p>
@@ -432,7 +436,7 @@ export default function BookAppointment() {
             </div>
 
             <div className="pt-4">
-              <Button variant="outline" size="sm" onClick={resetWizard}>
+              <Button variant="outline" size="sm" onClick={resetWizard} className="text-slate-900 border-slate-350 hover:border-slate-400">
                 Book Another Appointment
               </Button>
             </div>
@@ -449,6 +453,7 @@ export default function BookAppointment() {
                 onClick={prevStep}
                 icon={ChevronLeft}
                 iconPosition="left"
+                className="text-slate-900 border-slate-350 hover:border-slate-400"
               >
                 Back
               </Button>
@@ -464,6 +469,7 @@ export default function BookAppointment() {
                 onClick={nextStep}
                 icon={ChevronRight}
                 iconPosition="right"
+                className="bg-medical-600 hover:bg-medical-700 text-white"
               >
                 Continue
               </Button>
@@ -476,6 +482,7 @@ export default function BookAppointment() {
                 onClick={submitAppointment}
                 icon={CheckCircle2}
                 iconPosition="right"
+                className="bg-cta-600 hover:bg-cta-700 text-white"
               >
                 Submit Booking Request
               </Button>
