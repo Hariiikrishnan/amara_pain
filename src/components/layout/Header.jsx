@@ -118,10 +118,20 @@ export default function Header() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-medical-600 rounded-lg pr-2">
+          <Link to="/" className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-medical-600 rounded-lg pr-2">
+            <svg className="h-9 w-9 text-medical-600 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="9" y="2" width="6" height="20" rx="3" fill="currentColor" opacity="0.15" />
+              <path d="M12 2V22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M7 6H17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M5 11H19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M7 16H17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              <circle cx="12" cy="6" r="1.5" fill="#0d9488" />
+              <circle cx="12" cy="11" r="1.5" fill="#0d9488" />
+              <circle cx="12" cy="16" r="1.5" fill="#0d9488" />
+            </svg>
             <div className="flex flex-col">
               <span className="text-xl md:text-2xl font-black font-heading text-primary-900 tracking-tight flex items-center leading-none">
-                AMARA<span className="text-medical-600 ml-1">PAIN</span>
+                AMARA<span className="text-medical-600 ml-0.5">PAIN</span>
               </span>
               <span className="text-[9px] md:text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase mt-0.5 leading-none">
                 &amp; Spine Management
@@ -136,7 +146,7 @@ export default function Header() {
                 {item.submenu ? (
                   <button
                     onClick={(e) => toggleDropdown(index, e)}
-                    className="flex items-center gap-1 px-4 py-2 text-[15px] font-semibold text-primary-800 hover:text-medical-600 transition-colors rounded-full cursor-pointer focus-visible:outline-medical-600"
+                    className="flex items-center gap-1 px-4 py-2 text-[15px] font-semibold text-primary-800 hover:text-medical-600 transition-colors rounded-full cursor-pointer focus-visible:outline-medical-600 whitespace-nowrap"
                   >
                     {item.name}
                     <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
@@ -144,7 +154,7 @@ export default function Header() {
                 ) : (
                   <NavLink
                     to={item.path}
-                    className={({ isActive }) => `block px-4 py-2 text-[15px] font-semibold transition-colors rounded-full focus-visible:outline-medical-600 ${
+                    className={({ isActive }) => `block px-4 py-2 text-[15px] font-semibold transition-colors rounded-full focus-visible:outline-medical-600 whitespace-nowrap ${
                       isActive 
                         ? 'text-medical-600 bg-medical-50' 
                         : 'text-primary-800 hover:text-medical-600'
@@ -192,7 +202,7 @@ export default function Header() {
 
           {/* Desktop Right Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:7045039338" className="text-primary-800 hover:text-medical-600 font-bold transition-colors text-sm flex items-center gap-1.5 focus-visible:outline-medical-600 rounded-full px-2 py-1">
+            <a href="tel:7045039338" className="text-primary-800 hover:text-medical-600 font-bold transition-colors text-sm flex items-center gap-1.5 focus-visible:outline-medical-600 rounded-full px-2 py-1 whitespace-nowrap">
               <Phone className="h-4 w-4 text-medical-600" />
               704-503-9338
             </a>
