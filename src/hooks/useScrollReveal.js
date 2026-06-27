@@ -16,7 +16,7 @@ export default function useScrollReveal(containerRef) {
     const container = containerRef?.current;
     if (!container) return;
 
-    const revealElements = container.querySelectorAll('.animate-reveal');
+    const revealElements = container.querySelectorAll('.animate-reveal, .animate-reveal-3d');
 
     if (prefersReducedMotion) {
       // Force all elements to reveal immediately without transition styles

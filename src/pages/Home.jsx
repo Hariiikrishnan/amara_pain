@@ -161,12 +161,9 @@ export default function Home() {
   ];
 
   return (
-    <div ref={containerRef} className="w-full skeuomorphic-console min-h-screen relative">
-      
-      {/* Premium Floating Ambient Background Orbs */}
-      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/25 rounded-full blur-[140px] pointer-events-none animate-float-slow z-0" />
-      <div className="absolute top-[35%] left-[-15%] w-[600px] h-[600px] bg-teal-200/20 rounded-full blur-[150px] pointer-events-none animate-float-delayed z-0" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[550px] h-[550px] bg-cyan-100/20 rounded-full blur-[130px] pointer-events-none animate-float-slow z-0" />
+    <div ref={containerRef} className="w-full relative">
+
+
 
       {/* 1. HERO SECTION (Clean White Space & Raised Bezel Panel - Straight typography) */}
       <section className="relative py-12 md:py-20 px-4 md:px-8 max-w-7xl mx-auto z-10">
@@ -299,7 +296,7 @@ export default function Home() {
             return (
               <div 
                 key={idx} 
-                className="console-card-tactile p-6 relative overflow-hidden flex flex-col text-left space-y-4 animate-reveal"
+                className="console-card-tactile console-card-3d p-6 relative overflow-hidden flex flex-col text-left space-y-4 animate-reveal-3d"
                 style={{ animationDelay: `${idx * 0.08}s` }}
               >
                 {/* Glowing LED status light */}
@@ -340,7 +337,7 @@ export default function Home() {
             {Object.values(conditions).map((cond, idx) => (
               <div 
                 key={cond.id} 
-                className="console-card-tactile bg-slate-50/20 pt-6 pb-6 px-6 flex flex-col justify-between text-left h-full group relative animate-reveal border-t-[8px] border-t-slate-350"
+                className="console-card-tactile console-card-3d bg-slate-50/20 pt-6 pb-6 px-6 flex flex-col justify-between text-left h-full group relative animate-reveal-3d border-t-[8px] border-t-slate-350"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 {/* Visual binder clip at top */}

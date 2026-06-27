@@ -66,10 +66,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full skeuomorphic-console min-h-screen relative py-16 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
-      {/* Premium Ambient Background Orbs */}
-      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/15 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-[10%] left-[-10%] w-[550px] h-[550px] bg-teal-200/15 rounded-full blur-[130px] pointer-events-none z-0" />
+    <div className="w-full relative py-16 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
 
       {/* 1. PAGE HEADER */}
       <div className="space-y-4 max-w-3xl border-b border-slate-200 pb-8 relative z-10">
@@ -95,7 +92,7 @@ export default function Contact() {
           
           <div className="grid grid-cols-1 gap-4">
             {/* Phone & Fax Card */}
-            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start">
+            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start console-card-3d animate-reveal-3d" style={{ animationDelay: '0.05s' }}>
               <Phone className="h-6 w-6 text-medical-600 shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-sm text-slate-900 uppercase tracking-wider">Phone &amp; Fax</h3>
@@ -107,7 +104,7 @@ export default function Contact() {
             </Card>
 
             {/* Address Card */}
-            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start">
+            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start console-card-3d animate-reveal-3d" style={{ animationDelay: '0.1s' }}>
               <MapPin className="h-6 w-6 text-accent-600 shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-sm text-slate-900 uppercase tracking-wider">Location Address</h3>
@@ -121,15 +118,15 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-xs font-bold text-accent-600 hover:text-accent-700 mt-2"
                 >
-                  <Navigation className="h-3.5 w-3.5" />
-                  <span>Get Driving Directions</span>
+                  Get Directions
+                  <ArrowRight className="h-3 w-3" />
                 </a>
               </div>
             </Card>
 
-            {/* Hours Card */}
-            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start">
-              <Clock className="h-6 w-6 text-slate-500 shrink-0 mt-1" />
+            {/* Office Hours Card */}
+            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start console-card-3d animate-reveal-3d" style={{ animationDelay: '0.15s' }}>
+              <Clock className="h-6 w-6 text-cta-600 shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-sm text-slate-900 uppercase tracking-wider">Office Hours</h3>
                 <p className="text-sm text-slate-600 leading-relaxed mt-1">
@@ -140,7 +137,7 @@ export default function Contact() {
             </Card>
 
             {/* Email Card */}
-            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start">
+            <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex gap-4 items-start console-card-3d animate-reveal-3d" style={{ animationDelay: '0.2s' }}>
               <Mail className="h-6 w-6 text-slate-500 shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-sm text-slate-900 uppercase tracking-wider">Administrative Email</h3>
@@ -158,7 +155,7 @@ export default function Contact() {
             Send an Inquiry
           </h2>
 
-          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative">
+          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative console-card-3d animate-reveal-3d" style={{ animationDelay: '0.1s' }}>
             {submitSuccess ? (
               <div className="text-center py-12 space-y-4">
                 <div className="p-3 bg-emerald-50 text-emerald-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto">

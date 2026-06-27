@@ -1,7 +1,7 @@
 export const typography = {
   fontFamily: {
-    sans: '"Manrope", system-ui, -apple-system, sans-serif',
-    heading: '"Manrope", system-ui, -apple-system, sans-serif',
+    sans: '"Plus Jakarta Sans", system-ui, -apple-system, sans-serif',
+    heading: '"Plus Jakarta Sans", system-ui, -apple-system, sans-serif',
   },
   fontSize: {
     h1: '56px',

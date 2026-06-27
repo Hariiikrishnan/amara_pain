@@ -46,10 +46,7 @@ export default function About() {
   ];
 
   return (
-    <div ref={containerRef} className="w-full skeuomorphic-console min-h-screen relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
-      {/* Premium Ambient Background Orbs */}
-      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/15 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-[10%] left-[-10%] w-[550px] h-[550px] bg-teal-200/15 rounded-full blur-[130px] pointer-events-none z-0" />
+    <div ref={containerRef} className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
 
       {/* 1. PAGE HEADER */}
       <div className="space-y-6 max-w-3xl border-b border-slate-200 pb-10 relative z-10 animate-reveal">
@@ -79,17 +76,17 @@ export default function About() {
 
           {/* Three core values grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300">
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.05s' }}>
               <Heart className="h-6 w-6 text-medical-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Human Element</h4>
               <p className="text-xs text-slate-500 leading-relaxed">We validate your pain and treat every patient with empathy.</p>
             </div>
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300">
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.1s' }}>
               <Shield className="h-6 w-6 text-accent-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Affordable Care</h4>
               <p className="text-xs text-slate-500 leading-relaxed">Flat office fee with absolutely zero facility fee markups.</p>
             </div>
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300">
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.15s' }}>
               <BookOpen className="h-6 w-6 text-cta-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Evidence-Based</h4>
               <p className="text-xs text-slate-500 leading-relaxed">FDA-approved interventional clinical techniques.</p>
@@ -145,7 +142,7 @@ export default function About() {
         {/* Providers Details List */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {staff.map((provider, idx) => (
-            <Card key={idx} variant="white" padding="lg" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between h-full group p-8">
+            <Card key={idx} variant="white" padding="lg" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between h-full group p-8 console-card-3d animate-reveal-3d" style={{ animationDelay: `${idx * 0.1}s` }}>
               <div className="space-y-6">
                 {/* Header */}
                 <div className="border-b border-slate-100 pb-4 flex justify-between items-start">

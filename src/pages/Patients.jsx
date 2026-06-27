@@ -30,10 +30,7 @@ export default function Patients() {
   );
 
   return (
-    <div className="w-full skeuomorphic-console min-h-screen relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
-      {/* Premium Ambient Background Orbs */}
-      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/15 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-[15%] left-[-10%] w-[550px] h-[550px] bg-teal-200/15 rounded-full blur-[130px] pointer-events-none z-0" />
+    <div className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
 
       {/* 1. PAGE HEADER */}
       <div className="space-y-6 max-w-3xl border-b border-slate-200 pb-10 relative z-10">

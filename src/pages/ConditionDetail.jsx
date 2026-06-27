@@ -39,10 +39,7 @@ export default function ConditionDetail() {
   }
 
   return (
-    <div className="w-full skeuomorphic-console min-h-screen relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
-      {/* Premium Ambient Background Orbs */}
-      <div className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/15 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-[10%] left-[-10%] w-[550px] h-[550px] bg-teal-200/15 rounded-full blur-[130px] pointer-events-none z-0" />
+    <div className="w-full relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
 
       {/* 1. BREADCRUMBS & BACK LINK */}
       <div className="flex flex-col gap-4 relative z-10">
