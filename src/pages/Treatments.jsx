@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Activity, Search, ArrowRight, Shield, Calendar, Clock } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { treatments } from '../utils/medicalData';
 import '../styles/skeuomorphic.css';
 
 export default function Treatments() {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef);
+
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTreatments = Object.values(treatments).filter(treat => 
@@ -17,10 +21,10 @@ export default function Treatments() {
   );
 
   return (
-    <div className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
+    <div ref={containerRef} className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
       
       {/* 1. PAGE HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-10 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-10 relative z-10 animate-reveal">
         <div className="space-y-6 max-w-2xl">
           <Badge variant="secondary" className="bg-cyan-50 text-cyan-805 border border-cyan-200 font-bold uppercase tracking-widest">
             Clinic Procedures
@@ -55,7 +59,7 @@ export default function Treatments() {
                 key={treat.id} 
                 hoverable 
                 variant="white" 
-                className="flex flex-col justify-between h-full group border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 p-6 console-card-3d animate-reveal-3d"
+                className="flex flex-col justify-between h-full group border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 p-6 console-card-3d animate-reveal"
               >
                 <div className="space-y-5">
                   {/* Top Badge and Icon */}
@@ -108,7 +112,7 @@ export default function Treatments() {
       </div>
 
       {/* 3. MOCK HOSPITAL FEE REMINDER PANEL */}
-      <Card variant="slate" padding="lg" className="border-slate-200/80 bg-slate-100/50 flex flex-col md:flex-row gap-6 items-center justify-between relative z-10 shadow-sm p-8">
+      <Card variant="slate" padding="lg" className="border-slate-200/80 bg-slate-100/50 flex flex-col md:flex-row gap-6 items-center justify-between relative z-10 shadow-sm p-8 animate-reveal">
         <div className="space-y-3 max-w-2xl text-left">
           <h3 className="text-xl font-bold font-heading text-slate-900">
             A Financial Advantage: Zero Hidden Facility Charges

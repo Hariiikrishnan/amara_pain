@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Activity, Search, ArrowRight, ShieldCheck, Calendar, Info, Phone } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { conditions } from '../utils/medicalData';
 import '../styles/skeuomorphic.css';
 
 export default function Conditions() {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef);
+
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredConditions = Object.values(conditions).filter(cond => 
@@ -18,10 +22,10 @@ export default function Conditions() {
   );
 
   return (
-    <div className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
+    <div ref={containerRef} className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-16 text-left">
       
       {/* 1. PAGE HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-10 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-10 relative z-10 animate-reveal">
         <div className="space-y-6 max-w-2xl">
           <Badge variant="accent" className="bg-cyan-50 text-cyan-800 border border-cyan-200 font-bold uppercase tracking-widest">
             Patient Education
@@ -48,7 +52,7 @@ export default function Conditions() {
       </div>
 
       {/* 2. WARNING CALLOUT */}
-      <Card variant="slate" padding="sm" className="bg-slate-100/50 border-slate-200 flex gap-3.5 items-start relative z-10 p-6">
+      <Card variant="slate" padding="sm" className="bg-slate-100/50 border-slate-200 flex gap-3.5 items-start relative z-10 p-6 animate-reveal">
         <Info className="h-5 w-5 text-medical-600 shrink-0 mt-0.5" />
         <p className="text-xs text-slate-600 leading-relaxed">
           <strong>Important Note:</strong> The conditions listed below represent broad clinical categories we treat. Pain can manifest in highly complex, overlapping ways. A physical evaluation and review of recent diagnostics (such as MRIs or X-rays) by our double board-certified specialist is necessary to formulate an accurate, targeted treatment plan.
@@ -64,7 +68,7 @@ export default function Conditions() {
                 key={cond.id} 
                 hoverable 
                 variant="white" 
-                className="flex flex-col justify-between h-full group border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 p-6 console-card-3d animate-reveal-3d"
+                className="flex flex-col justify-between h-full group border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 p-6 console-card-3d animate-reveal"
               >
                 <div className="space-y-4">
                   {/* Header Icon */}
@@ -114,7 +118,7 @@ export default function Conditions() {
       </div>
 
       {/* 4. CALL TO ACTION SECTION */}
-      <Card variant="slate" padding="lg" className="bg-gradient-to-br from-primary-900 to-slate-900 border-none text-white text-center space-y-6 pt-12 pb-12 mt-12 relative overflow-hidden z-10 shadow-premium p-8">
+      <Card variant="slate" padding="lg" className="bg-gradient-to-br from-primary-900 to-slate-900 border-none text-white text-center space-y-6 pt-12 pb-12 mt-12 relative overflow-hidden z-10 shadow-premium p-8 animate-reveal">
         <div className="absolute top-0 right-0 w-80 h-80 bg-medical-500/10 rounded-full blur-3xl -z-10 animate-pulse" />
         <div className="space-y-4 max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-[36px] font-extrabold font-heading leading-[1.2] text-white">

@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FileText, CreditCard, UserCheck, ShieldCheck, Download, Calendar, Search, HelpCircle, Phone } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Accordion from '../components/ui/Accordion';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { faqs } from '../utils/medicalData';
 import '../styles/skeuomorphic.css';
 
 export default function Patients() {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef);
+
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -30,10 +34,10 @@ export default function Patients() {
   );
 
   return (
-    <div className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
+    <div ref={containerRef} className="w-full relative py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-24 text-left">
 
       {/* 1. PAGE HEADER */}
-      <div className="space-y-6 max-w-3xl border-b border-slate-200 pb-10 relative z-10">
+      <div className="space-y-6 max-w-3xl border-b border-slate-200 pb-10 relative z-10 animate-reveal">
         <Badge variant="secondary" className="bg-cyan-50 text-cyan-800 border border-cyan-200 font-bold uppercase tracking-widest">
           Patient Resources
         </Badge>
@@ -46,7 +50,7 @@ export default function Patients() {
       </div>
 
       {/* 2. PORTAL & PORTAL ACTION CARDS */}
-      <section className="space-y-8 relative z-10">
+      <section className="space-y-8 relative z-10 animate-reveal">
         <h2 className="text-3xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">
           AthenaHealth Portal Integrations
         </h2>
@@ -81,7 +85,7 @@ export default function Patients() {
           {/* Card 2: Pay Bills */}
           <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between h-full group p-8">
             <div className="space-y-4">
-              <div className="p-3 bg-cyan-50 text-cyan-605 rounded-2xl w-12 h-12 flex items-center justify-center border border-cyan-100 group-hover:bg-cyan-600 group-hover:text-white transition-colors duration-300 shadow-inner">
+              <div className="p-3 bg-cyan-50 text-cyan-655 rounded-2xl w-12 h-12 flex items-center justify-center border border-cyan-100 group-hover:bg-cyan-600 group-hover:text-white transition-colors duration-300 shadow-inner">
                 <CreditCard className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold font-heading text-slate-900">
@@ -108,7 +112,7 @@ export default function Patients() {
       </section>
 
       {/* 3. DOWNLOADABLE FORMS SECTION */}
-      <section className="space-y-8 pt-6 relative z-10" id="forms">
+      <section className="space-y-8 pt-6 relative z-10 animate-reveal" id="forms">
         <h2 className="text-3xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">
           Clinical Forms &amp; Registration Packets
         </h2>
@@ -176,7 +180,7 @@ export default function Patients() {
       </section>
 
       {/* 4. GENERAL FAQS SECTION */}
-      <section className="space-y-8 pt-6 relative z-10" id="faqs">
+      <section className="space-y-8 pt-6 relative z-10 animate-reveal" id="faqs">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
             <Badge variant="accent" className="bg-cyan-50 text-cyan-805 border border-cyan-205 font-semibold">
@@ -205,7 +209,7 @@ export default function Patients() {
 
         {/* FAQs Accordions list */}
         {filteredFaqs.length > 0 ? (
-          <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium divide-y divide-slate-100 p-8">
+          <Card variant="white" padding="md" className="border-slate-200/80 shadow-premium divide-y divide-slate-100 p-8 animate-reveal">
             {filteredFaqs.map((faq, idx) => (
               <Accordion key={idx} title={faq.q} className="py-1">
                 {faq.a}
@@ -220,7 +224,7 @@ export default function Patients() {
       </section>
 
       {/* 5. MOCK SCHEDULE PROMPT */}
-      <Card variant="slate" padding="lg" className="bg-gradient-to-tr from-medical-600 to-accent-600 border-none text-white flex flex-col md:flex-row gap-8 items-center justify-between shadow-premium relative z-10 p-8">
+      <Card variant="slate" padding="lg" className="bg-gradient-to-tr from-medical-600 to-accent-600 border-none text-white flex flex-col md:flex-row gap-8 items-center justify-between shadow-premium relative z-10 p-8 animate-reveal">
         <div className="space-y-3 text-left">
           <h3 className="text-2xl font-bold font-heading text-white">Need to Speak with a Clinical Assistant?</h3>
           <p className="text-sm text-white/90">Our patient coordinators are ready to help you navigate referrals, billing questions, or scheduling.</p>

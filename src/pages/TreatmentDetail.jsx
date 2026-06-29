@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Activity, ArrowLeft, CheckCircle2, ChevronRight, Calendar, Phone, ShieldCheck, Clock, AlertCircle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Accordion from '../components/ui/Accordion';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { treatments } from '../utils/medicalData';
 import '../styles/skeuomorphic.css';
 
 export default function TreatmentDetail() {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const treat = treatments[id];
@@ -30,7 +34,7 @@ export default function TreatmentDetail() {
       <div className="max-w-7xl mx-auto py-20 px-4 text-center space-y-6 text-left">
         <AlertCircle className="h-16 w-16 text-cta-600 mx-auto" />
         <h1 className="text-3xl font-extrabold font-heading text-slate-900">Procedure Not Found</h1>
-        <p className="text-[18px] text-slate-600 font-normal leading-[1.75]">We couldn't find the pain treatment procedure you were looking for.</p>
+        <p className="text-[18px] text-slate-605 font-normal leading-[1.75]">We couldn't find the pain treatment procedure you were looking for.</p>
         <Button variant="primary" onClick={() => navigate('/treatments')}>
           Back to Treatments
         </Button>
@@ -39,10 +43,10 @@ export default function TreatmentDetail() {
   }
 
   return (
-    <div className="w-full relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
+    <div ref={containerRef} className="w-full relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
 
       {/* 1. BREADCRUMBS & BACK LINK */}
-      <div className="flex flex-col gap-4 relative z-10">
+      <div className="flex flex-col gap-4 relative z-10 animate-reveal">
         <Link 
           to="/treatments" 
           className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 hover:text-medical-600 transition-colors"
@@ -62,7 +66,7 @@ export default function TreatmentDetail() {
       </div>
 
       {/* 2. HEADER BLOCK */}
-      <div className="border-b border-slate-200 pb-8 space-y-6 relative z-10">
+      <div className="border-b border-slate-200 pb-8 space-y-6 relative z-10 animate-reveal">
         <Badge variant="accent" className="bg-cyan-50 text-cyan-800 border border-cyan-200 font-bold uppercase tracking-widest">
           Procedure Guide
         </Badge>
@@ -82,7 +86,7 @@ export default function TreatmentDetail() {
         <div className="lg:col-span-8 space-y-12">
           
           {/* Overview */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Procedure Overview</h2>
             <p className="text-[18px] text-slate-600 font-normal leading-[1.75] max-w-[720px]">
               {treat.overview}
@@ -90,7 +94,7 @@ export default function TreatmentDetail() {
           </div>
 
           {/* Benefits */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Clinical Benefits</h2>
             <p className="text-[18px] text-slate-650 font-normal leading-[1.75] max-w-[720px]">
               Precision interventional procedures offer major advantages over major surgery and daily oral pain medications:
@@ -106,7 +110,7 @@ export default function TreatmentDetail() {
           </div>
 
           {/* Recovery */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Recovery &amp; Aftercare</h2>
             <p className="text-[18px] text-slate-600 font-normal leading-[1.75] max-w-[720px]">
               {treat.recovery}
@@ -114,7 +118,7 @@ export default function TreatmentDetail() {
           </div>
 
           {/* FAQs */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Frequently Asked Questions</h2>
             <div className="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-premium">
               {treat.faqs.map((faq, fIdx) => (
@@ -129,7 +133,7 @@ export default function TreatmentDetail() {
 
         {/* Right Column: Sticky Booking Sidebar */}
         <div className="lg:col-span-4 space-y-6">
-          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative sticky top-6 p-8">
+          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative sticky top-24 p-8 animate-reveal">
             <div className="absolute top-0 right-0 w-20 h-20 bg-medical-50 rounded-full blur-xl -z-10" />
             
             <div className="space-y-4 text-left">

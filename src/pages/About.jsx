@@ -76,17 +76,17 @@ export default function About() {
 
           {/* Three core values grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.05s' }}>
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal" style={{ animationDelay: '0.05s' }}>
               <Heart className="h-6 w-6 text-medical-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Human Element</h4>
               <p className="text-xs text-slate-500 leading-relaxed">We validate your pain and treat every patient with empathy.</p>
             </div>
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.1s' }}>
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal" style={{ animationDelay: '0.1s' }}>
               <Shield className="h-6 w-6 text-accent-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Affordable Care</h4>
               <p className="text-xs text-slate-500 leading-relaxed">Flat office fee with absolutely zero facility fee markups.</p>
             </div>
-            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal-3d" style={{ animationDelay: '0.15s' }}>
+            <div className="p-6 bg-white border border-slate-250 rounded-2xl shadow-premium hover:shadow-premium-hover transition-all duration-300 console-card-3d animate-reveal" style={{ animationDelay: '0.15s' }}>
               <BookOpen className="h-6 w-6 text-cta-600 mb-2" />
               <h4 className="font-bold text-sm text-slate-900 mb-1">Evidence-Based</h4>
               <p className="text-xs text-slate-500 leading-relaxed">FDA-approved interventional clinical techniques.</p>
@@ -142,7 +142,7 @@ export default function About() {
         {/* Providers Details List */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {staff.map((provider, idx) => (
-            <Card key={idx} variant="white" padding="lg" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between h-full group p-8 console-card-3d animate-reveal-3d" style={{ animationDelay: `${idx * 0.1}s` }}>
+            <Card key={idx} variant="white" padding="lg" className="border-slate-200/80 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between h-full group p-8 console-card-3d animate-reveal" style={{ animationDelay: `${idx * 0.1}s` }}>
               <div className="space-y-6">
                 {/* Header */}
                 <div className="border-b border-slate-100 pb-4 flex justify-between items-start">

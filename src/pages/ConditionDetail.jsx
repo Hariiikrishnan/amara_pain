@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Activity, ArrowLeft, CheckCircle2, ChevronRight, Calendar, Phone, ShieldCheck, AlertCircle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Accordion from '../components/ui/Accordion';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { conditions } from '../utils/medicalData';
 import '../styles/skeuomorphic.css';
 
 export default function ConditionDetail() {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const cond = conditions[id];
@@ -39,10 +43,10 @@ export default function ConditionDetail() {
   }
 
   return (
-    <div className="w-full relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
+    <div ref={containerRef} className="w-full relative py-12 px-4 md:px-8 max-w-7xl mx-auto space-y-12 text-left">
 
       {/* 1. BREADCRUMBS & BACK LINK */}
-      <div className="flex flex-col gap-4 relative z-10">
+      <div className="flex flex-col gap-4 relative z-10 animate-reveal">
         <Link 
           to="/conditions" 
           className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 hover:text-medical-600 transition-colors"
@@ -62,7 +66,7 @@ export default function ConditionDetail() {
       </div>
 
       {/* 2. HEADER BLOCK */}
-      <div className="border-b border-slate-200 pb-8 space-y-6 relative z-10">
+      <div className="border-b border-slate-200 pb-8 space-y-6 relative z-10 animate-reveal">
         <Badge variant="secondary" className="bg-cyan-50 text-cyan-800 border border-cyan-200 font-bold uppercase tracking-widest">
           Pain Guide
         </Badge>
@@ -81,7 +85,7 @@ export default function ConditionDetail() {
         <div className="lg:col-span-8 space-y-12">
           
           {/* Overview */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Condition Overview</h2>
             <p className="text-[18px] text-slate-605 font-normal leading-[1.75] max-w-[720px]">
               {cond.overview}
@@ -89,7 +93,7 @@ export default function ConditionDetail() {
           </div>
 
           {/* Symptoms */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Common Symptoms</h2>
             <p className="text-[18px] text-slate-605 font-normal leading-[1.75] max-w-[720px]">
               Patients suffering from {cond.title.toLowerCase()} often report experiencing one or more of the following symptoms:
@@ -105,7 +109,7 @@ export default function ConditionDetail() {
           </div>
 
           {/* Causes */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Underlying Causes</h2>
             <p className="text-[18px] text-slate-605 font-normal leading-[1.75] max-w-[720px]">
               Pain is a complex signal. {cond.title.toLowerCase()} can be triggered by structural wear-and-tear, injury, or nerve irritation:
@@ -121,7 +125,7 @@ export default function ConditionDetail() {
           </div>
 
           {/* Recommended Treatments */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Clinical Treatment Options</h2>
             <p className="text-[18px] text-slate-650 font-normal leading-[1.75] max-w-[720px]">
               We specialize in targeted, non-surgical therapies that alleviate inflammation, block pain transmission, and promote tissue healing:
@@ -146,7 +150,7 @@ export default function ConditionDetail() {
           </div>
 
           {/* Condition Specific FAQs */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-reveal">
             <h2 className="text-2xl md:text-[42px] font-extrabold font-heading leading-[1.2] text-slate-900">Frequently Asked Questions</h2>
             <div className="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-premium">
               {cond.faqs.map((faq, fIdx) => (
@@ -162,7 +166,7 @@ export default function ConditionDetail() {
         {/* Right Column: Appointment Sidebar */}
         <div className="lg:col-span-4 space-y-6">
           {/* Quick Schedule Card */}
-          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative sticky top-6 p-8">
+          <Card variant="white" padding="lg" className="border-slate-200/80 shadow-premium relative sticky top-24 p-8 animate-reveal">
             <div className="absolute top-0 right-0 w-20 h-20 bg-medical-50 rounded-full blur-xl -z-10" />
             
             <div className="space-y-4 text-left">

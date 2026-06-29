@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -18,29 +18,19 @@ import BookAppointment from './pages/BookAppointment';
 import AdminDashboard from './pages/AdminDashboard';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import { AppointmentProvider } from './context/AppointmentContext';
-import useSmoothParallax from './hooks/useSmoothParallax';
+import useScrollProgress from './hooks/useScrollProgress';
 import './styles/skeuomorphic.css';
 
 function MainLayout() {
-  const location = useLocation();
-  const orb1Ref = useRef(null);
-  const orb2Ref = useRef(null);
-  const orb3Ref = useRef(null);
-
-  const parallaxTargets = useMemo(() => [
-    { ref: orb1Ref, factor: -0.04 },
-    { ref: orb2Ref, factor: 0.03 },
-    { ref: orb3Ref, factor: -0.02 }
-  ], []);
-
-  useSmoothParallax(parallaxTargets, location.pathname);
+  const containerRef = useRef(null);
+  useScrollProgress(containerRef);
 
   return (
-    <div className="flex flex-col min-h-screen skeuomorphic-console text-primary-800 selection:bg-medical-100 selection:text-medical-800 pb-[68px] lg:pb-0 relative overflow-x-hidden">
-      {/* Global Parallax Ambient Orbs */}
-      <div ref={orb1Ref} className="absolute top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/25 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div ref={orb2Ref} className="absolute top-[35%] left-[-15%] w-[600px] h-[600px] bg-teal-200/20 rounded-full blur-[150px] pointer-events-none z-0" />
-      <div ref={orb3Ref} className="absolute bottom-[10%] right-[-10%] w-[550px] h-[550px] bg-cyan-100/20 rounded-full blur-[130px] pointer-events-none z-0" />
+    <div ref={containerRef} className="flex flex-col min-h-screen skeuomorphic-console text-primary-800 selection:bg-medical-100 selection:text-medical-800 pb-[68px] lg:pb-0 relative overflow-x-hidden">
+      {/* Global Parallax Ambient Orbs (Fixed viewport layers for continuous drift) */}
+      <div className="fixed top-[-5%] right-[-10%] w-[550px] h-[550px] bg-cyan-200/25 rounded-full blur-[140px] pointer-events-none z-0 parallax-orb-1" />
+      <div className="fixed top-[35%] left-[-15%] w-[600px] h-[600px] bg-teal-200/20 rounded-full blur-[150px] pointer-events-none z-0 parallax-orb-2" />
+      <div className="fixed bottom-[10%] right-[-10%] w-[550px] h-[550px] bg-cyan-100/20 rounded-full blur-[130px] pointer-events-none z-0 parallax-orb-3" />
 
       {/* Main Navigation Header */}
       <Header />
